@@ -31,8 +31,8 @@ def create_app():
     app.register_blueprint(arm_num_checker, url_prefix='/arm_num_checker')
 
     # User Blueprint
-    # from .views.user import user_bluprt
-    # app.register_blueprint(user_bluprt, url_prefix='/user')
+    from .views.user import user_bluprt
+    app.register_blueprint(user_bluprt, url_prefix='/user')
 
     # OTHER SETUPS
     from .config.database import db
@@ -56,12 +56,6 @@ def create_app():
     def handle_needs_login():
         flash("You have to be logged in to access this page.")
         return redirect(url_for('auth.login_page', next=request.endpoint))
-
-    # @login_manager.user_loader
-    # def load_user(user_id):
-    #     user_session = session.get('user')
-    #     if user_session and user_session.user_id == user_id:
-    #         return user_session
 
     # ERROR 404
     @app.errorhandler(404)
