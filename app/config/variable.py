@@ -1,0 +1,18 @@
+from environs import Env
+
+env = Env()
+env.read_env()  # Read the .env file, if it exists
+
+# ACCESS THE ENVIRONMENT VARIABLES
+# SECRET KEY
+SECRET_KEY = env('SECRET_KEY')
+
+# DATABASE VARIABLES
+MYSQL_HOST = env('MYSQL_HOST')
+MYSQL_PORT = env('MYSQL_PORT')
+MYSQL_USER = env('MYSQL_USER')
+MYSQL_PASSWORD = env('MYSQL_PASSWORD')
+MYSQL_DB = env('MYSQL_DB')
+
+# DATABASE URI
+DATABASE_URI = env('DATABASE_URI')

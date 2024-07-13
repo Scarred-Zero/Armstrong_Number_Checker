@@ -1,0 +1,6 @@
+Flask~=3.0.3
+email_validator~=2.2.0
+Werkzeug~=3.0.3
+WTForms~=3.1.2
+environs~=11.0.0
+SQLAlchemy~=2.0.31

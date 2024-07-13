@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Log In | Armstrong Number Checker</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="A fully responsive Web Application" name="description" />
+        <!-- App icon -->
+        <link rel="icon" sizes="16x16" type="image/png" href="/static/auth/assets/images/logo.avif"/>
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <!-- App css -->
+        <link href="/static/auth/assets/css/app.min.css" rel="stylesheet" type="text/css" id="app-style" />
+        <!-- Googleapis fonts -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu|Poetsen One|Briem Hand">
+    </head>
+    
+    <body class="authentication-bg position-relative img-fluid">
+        <div class="account-pages pt-2 pt-sm-5 pb-4 position-relative">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xxl-8 col-lg-10">
+                        <div class="card overflow-hidden">
+                            <div class="row g-0">
+                                <div class="col-lg-6 d-none d-lg-block p-2">
+                                    <img src="/static/auth/assets/images/login_img.jpg" alt="" class="img-fluid rounded h-100">
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="d-flex flex-column h-100">
+                                        <div class="auth-brand p-4">
+                                            <a href="{{ url_for('arm_num_checker.home_page') }}" class="logo-dark">
+                                                <img src="/static/auth/assets/images/logo.avif" alt="dark logo" height="80">
+                                            </a>
+                                        </div>
+                                        <div class="p-4 my-auto">
+                                            <h4 class="fs-20">Sign In</h4>
+                                            <p class="text-muted mb-3">Enter your email address and password to access
+                                                account.
+                                            </p>
+
+                                            <!-- form -->
+                                            <form action="{{ url_for('auth.login_page') }}" method="post">
+                                                {% include "auth/partials/_alert.html" %}
+                                                <div class="mb-3">
+                                                    <label for="email" class="form-label">Email address:</label>
+                                                    <input class="form-control" type="email" name="email" id="email" required=""
+                                                        placeholder="Enter your email">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <!-- <a href="auth-forgotpw.html" class="text-muted float-end">
+                                                        <small>Forgot your password?</small>
+                                                    </a> -->
+                                                    <label for="password" class="form-label">Password:</label>
+                                                    <span style="display: flex;">
+                                                        <input class="form-control password" name="password" type="password" required="" id="password"
+                                                            placeholder="Enter your password">
+                                                        <span id="password_show_hide" onclick="togglePass()">
+                                                            <i class="fa fa-eye"></i>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="mb-0 text-start">
+                                                    <button class="btn btn-soft-primary w-100" style="border-radius: 8px;" type="submit">
+                                                        <i class="fa fa-sign-in me-1"></i> 
+                                                        <span class="fw-bold">Login</span>
+                                                    </button>
+                                                </div>
+                                            </form>
+                                            <!-- end form-->
+                                        </div>
+                                    </div>
+                                </div> <!-- end col -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end row -->
+                </div>
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <p class="text-light-emphasis">Don't have an account? <a href="{{ url_for('auth.register_page') }}"
+                                class="fw-bold ms-1 link-offset-3 text-decoration-underline"><b>Sign up</b></a>
+                        </p>
+                    </div> 
+                    <!-- end col -->
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- end container -->
+        </div>
+        <!-- end page -->
+
+        <footer class="footer footer-alt fw-medium">
+            <span class="text-light-emphasis"><script>document.write(new Date().getFullYear())</script> © Armstrong Number Checker </span>
+        </footer>
+        <!-- App js -->
+        <script src="/static/auth/assets/js/app.min.js"></script>
+
+    </body>
+
+</html>

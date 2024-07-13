@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge; charset=UTF-8">
+        <!-- Mofale Specific Meta-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="A fully responsive Website" name="description" />
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <title>{{ title }}</title>
+        
+        <!-- App icon -->
+        <link rel="icon" sizes="16x16" type="image/png" href="/static/app/assets/images/logo.avif"/>
+        <!-- bootstrap.min css -->
+        <link rel="stylesheet" href="/static/app/assets/css/bootstrap.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <!-- Googleapis Font -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu|Poetsen One|Briem Hand">
+        <!-- animate.css -->
+        <link rel="stylesheet" href="/static/app/assets/css/animate.css">
+        <!-- Owl Carousel  CSS -->
+        <link rel="stylesheet" href="/static/app/assets/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="/static/app/assets/css/owl.theme.default.min.css">
+        <!-- Main Stylesheet -->
+        <link rel="stylesheet" href="/static/app/assets/css/style.css">
+        <link rel="stylesheet" href="/static/app/assets/css/responsive.css">
+    </head>
+
+    <body id="top-header"> 
+        <!-- Header Start -->
+        <header>
+            <div class="header-top">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 col-md-6">
+                            <ul class="header-contact">
+                                <li>
+                                    <i class="fa fa-envelope"></i>
+                                    <span>Email :</span>
+                                    <a href="mailto:#">example@example.com</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                           
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+            </div>
+            <!-- Main Menu Start -->
+            <div class="site-navigation main_menu menu-2" id="mainmenu-area">
+                <nav class="navbar navbar-expand-lg">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="{{ url_for('arm_num_checker.home_page') }}">
+                            <img src="/static/app/assets/images/app_name.png" alt="Armstrong Number Checker" class="img-fluid">
+                        </a>
+
+                        <!-- Toggler -->
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="fa fa-bars-progress"></span>
+                        </button>
+
+                        <!-- Collapse -->
+                        <div class="collapse navbar-collapse" id="navbarMenu">                    
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item ">
+                                    <a href="{{ url_for('arm_num_checker.home_page') }}" class="nav-link " id="navbar3" role="button" aria-haspopup="true" aria-expanded="false">
+                                        Home
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a href="{{ url_for('arm_num_checker.contact_page') }}" class="nav-link">
+                                        Contact Us / Submit Feedback
+                                    </a>
+                                </li>
+                                <!-- <li class="nav-item ">
+                                    <a href="{{ url_for('arm_num_checker.results_page') }}" class="nav-link">
+                                        Results
+                                    </a>
+                                </li> -->
+                                <a href="{{ url_for('auth.logout') }}" class="btn btn-small" id="logout">
+                                    <i class="fa fa-sign-out-alt mr-2"></i>
+                                    Logout
+                                </a>
+                            </ul>     
+                        </div> 
+                        <!-- / .navbar-collapse -->
+                    </div> 
+                    <!-- / .container -->
+                </nav>
+            </div>
+        </header>
+
+        <!-- Page Header start -->
+        <section class="page-header">
+            <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="page-header-content">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item">
+                        <a href="{{ url_for('arm_num_checker.home_page') }}" id="breadcrumps">Home</a>
+                        </li>
+                        <li class="list-inline-item">/</li>
+                        <li class="list-inline-item">
+                            Edit User Profile
+                        </li>
+                    </ul>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </section>
+        <!-- Page Header End -->        
+
+        <section class="contact-info section-padding" id="armstrong-form-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <h3>USER DETAILS</h3>
+                        <br>
+                         <!-- form -->
+                         <form class="contact__form form-row " method="POST" action="{{ url_for('arm_num_checker.update_profile') }}">
+                            {% include "auth/partials/_alert.html" %}
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="alert alert-success contact__msg" style="display: none" role="alert">
+                                        Your profile was edited successfully!
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="name" class="form-label">Name:</label>
+                                        <input type="text" id="name" name="name" class="form-control" value="{{ edited_user.name }}">
+                                    </div>
+                                </div>
+                                
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                    <label for="email" class="form-label">Email:</label>
+                                        <input type="text" name="email" id="email" class="form-control" value="{{ edited_user.email }}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="usernmae" class="form-label">Username:</label>
+                                        <input type="text" name="username" id="username" class="form-control" value="{{ edited_user.username }}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="mt-4 text-right">
+                                    <button class="btn" id="find_armstrong_num" type="submit">
+                                        Save Profile<i class="fa fa-user ml-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form> 
+                        <!-- /form -->
+                    </div>    
+                </div>  
+            </div>   
+        </section>
+
+        <!-- Footer start -->
+        <section class="footer pt-120 mt-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 mr-auto col-sm-6 col-md-6">
+                        <div class="widget footer-widget mb-5 mb-lg-0">
+                            <h5 class="widget-title">About Us</h5>
+                            <p class="mt-3">
+                                The Armstrong Number Checker is a simple web application designed to determine whether a given positive integer is an Armstrong number (also known as a narcissistic number).</p>
+                        </div>
+                    </div>
+                  
+                    <div class="col-lg-3 col-sm-6 col-md-6">
+                        <div class="footer-widget footer-contact mb-5 mb-lg-0">
+                            <h5 class="widget-title">Contact Us</h5>
+                            <ul class="list-unstyled">
+                                <li> <i class="fa fa-envelope"></i>
+                                    <div>
+                                        <strong>Email Address</strong>
+                                        <a href="mailto:#">example@example.com</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-btm">
+                <div class="container">
+                    <div class="row justify-content-center align-items-center">
+                        <div class="col-lg-6">
+                            <div class="footer-logo">
+                                <img src="/static/app/assets/images/app_name.png" alt="Armstrong Number Checker" class="img-fluid">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="copyright text-lg-center">
+                                <p>
+                                    <script>document.write(new Date().getFullYear())</script> © Armstrong Number Checker  
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Footer end -->
+        <div class="fixed-btm-top">
+            <a href="{{ url_for('arm_num_checker.home_page') }}#top-header" class="js-scroll-trigger scroll-to-top"><i class="fa fa-angle-up"></i></a>
+        </div>
+
+        <!--Essential Scripts=====================================-->
+        
+        <!-- Main jQuery -->
+        <script src="/static/app/assets/js/jquery.js"></script>
+        <!-- Bootstrap 4.5 -->
+        <script src="/static/app/assets/js/bootstrap.js"></script>
+        <!-- Counterup -->
+        <script src="/static/app/assets/js/waypoint.js"></script>
+        <script src="/static/app/assets/js/jquery.counterup.min.js"></script>
+        <script src="/static/app/assets/js/jquery.isotope.js"></script>
+        <script src="/static/app/assets/js/imagesloaded.js"></script>
+        <!--  Owl Carousel-->
+        <script src="/static/app/assets/js/owl.carousel.min.js"></script>
+        <script src="/static/app/assets/js/script.js"></script>
+
+    </body>
+</html>
