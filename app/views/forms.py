@@ -5,43 +5,43 @@ from wtforms.validators import InputRequired, Email, EqualTo, Length
 
 # Define your RegistrationForm using Flask-WTF
 class RegistrationForm(FlaskForm):
-    name = StringField('Name', validators=[InputRequired(), Length(min=4, max=30)],
-                       render_kw={'placeholder': 'Ex. Michael Armstrong'})
+    name = StringField('Name:', validators=[InputRequired(), Length(min=4, max=30)],
+                       render_kw={'placeholder': 'Ex. Michael Armstrong', 'class': 'form-control'})
 
-    email = StringField('Email', validators=[InputRequired(), Email(), Length(min=6, max=80)],
-                        render_kw={'placeholder': 'Ex. michaelarmstrong@example.com'})
+    email = StringField('Email:', validators=[InputRequired(), Email(), Length(min=6, max=80)],
+                        render_kw={'placeholder': 'Ex. michaelarmstrong@example.com', 'class': 'form-control'})
 
-    username = StringField('Username', validators=[InputRequired(), Length(min=4, max=20)],
-                           render_kw={'placeholder': 'Ex. Armstrong153'})
+    username = StringField('Username:', validators=[InputRequired(), Length(min=4, max=30)],
+                           render_kw={'placeholder': 'Ex. Armstrong153', 'class': 'form-control'})
 
-    contact_number = TelField('Contact', validators=[InputRequired(), Length(max=20)],
-                              render_kw={'placeholder': 'Enter your contact number'})
+    contact_number = TelField('Contact:', validators=[InputRequired(), Length(max=20)],
+                              render_kw={'placeholder': 'Enter your contact number', 'class': 'form-control'})
 
-    password = PasswordField('Password', validators=[InputRequired(), Length(min=8, max=20)],
-                             render_kw={'placeholder': 'Enter your password'})
+    password = PasswordField('Password:', validators=[InputRequired(), Length(min=8, max=20)],
+                             render_kw={'placeholder': 'Enter your password', 'class': 'form-control'})
 
-    confirm_password = PasswordField('Confirm password', validators=[InputRequired(), Length(min=8, max=20),
+    confirm_password = PasswordField('Confirm password:', validators=[InputRequired(), Length(min=8, max=20),
                                                                      EqualTo('password',
-                                                                             message='Passwords must match')])
+                                                                             message='Passwords must match')], render_kw={'placeholder': 'Confirm password', 'class': 'form-control'})
 
-    submit = SubmitField('Register')
+    submit = SubmitField('Register', render_kw={'class': 'btn btn-soft-primary'})
 
 
 class LoginForm(FlaskForm):
-    email = StringField('Email', validators=[InputRequired(), Length(min=4, max=20)],
-                        render_kw={'placeholder': 'Email address'})
+    email = StringField('Email:', validators=[InputRequired(), Length(min=4, max=50)],
+                        render_kw={'placeholder': 'Email address', 'class': 'form-control'})
 
-    password = PasswordField('Password', validators=[InputRequired(), Length(min=4, max=20)],
-                             render_kw={'placeholder': 'Password'})
+    password = PasswordField('Password:', validators=[InputRequired(), Length(min=4, max=20)],
+                             render_kw={'placeholder': 'Password', 'class': 'form-control'})
 
-    submit = SubmitField('Login')
+    submit = SubmitField('Login', render_kw={'class': 'btn btn-soft-primary w-100'})
 
 
 class ProfileForm(FlaskForm):
-    name = StringField('Name', validators=[InputRequired(), Length(min=4, max=30)], render_kw={'placeholder': 'Ex. Michael Armstrong'})
+    name = StringField('Name:', validators=[InputRequired(), Length(min=4, max=30)], render_kw={'placeholder': 'Ex. Michael Armstrong', 'class': 'form-control'})
 
-    email = StringField('Email', validators=[InputRequired(), Length(min=6, max=80), Email()], render_kw={'placeholder': 'Email address'})
+    email = StringField('Email:', validators=[InputRequired(), Length(min=6, max=80), Email()], render_kw={'placeholder': 'Email address', 'class': 'form-control'})
 
-    username = StringField('Username', validators=[InputRequired(), Length(min=4, max=20)], render_kw={'placeholder': 'Ex. Armstrong153'})
+    username = StringField('Username:', validators=[InputRequired(), Length(min=4, max=20)], render_kw={'placeholder': 'Ex. Armstrong153', 'class': 'form-control'})
 
     submit = SubmitField('Save Profile')

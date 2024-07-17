@@ -8,8 +8,8 @@ user_bluprt = Blueprint('user', __name__)
 
 
 # HANDLE USER VIEW
-@user_bluprt.get('/user_profile/<int:user_id>')
-@login_required
+@user_bluprt.get('/user_profile')  # /<int:user_id>
+# @login_required
 def user_page(user_id):
     user = User.query.get_or_404(user_id)
     return render_template('profile/view.html', user=user, title='User Profile | Armstrong Number Checker')

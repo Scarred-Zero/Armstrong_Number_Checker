@@ -13,16 +13,16 @@
 ## Installation
 
 ### Clone this repository:
-    git clone https://github.com/your-username/armstrong-number-checker.git
+    git clone https://github.com/Scarred-Zero/Armstrong_Number_Checker.git
 ### Navigate to the project directory:
-    cd armstrong-number-checker
+    cd Armstrong_Number_Checker
 #### Install dependencies (assuming you have Python and pip installed):
     pip install -r requirements.txt
 
 ## Usage
 
 ### Run the Flask app:
-    python app.py
+    python main.py
     Open your web browser and go to http://localhost:5000.
     Use the form to input the minimum and maximum numbers or check a specific number.
     Example
@@ -38,7 +38,7 @@ The following emails have been added as collaborators to the project:
 
 ## Support
 
-For any inquiries, issues, or suggestions regarding the BookStore_app, please contact one of the [collaborators](#collaborators) listed above or send an email.
+For any inquiries, issues, or suggestions regarding the Armstrong_Number_Checker app, please contact one of the [collaborators](#collaborators) listed above or send an email.
 
 ## License
 

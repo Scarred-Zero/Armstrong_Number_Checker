@@ -4,10 +4,7 @@ from flask_login import LoginManager
 from os import path
 from .config.database import db
 from .models.User import User
-# from .config.database import get_db_connection
 from .config.variable import SECRET_KEY, MYSQL_HOST, MYSQL_PORT, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DB, DATABASE_URI
-
-# db = get_db_connection()
 
 
 def create_app():
@@ -22,28 +19,28 @@ def create_app():
     app.config['MYSQL_DB'] = MYSQL_DB
     app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URI
 
-    # Blueprint
+    # Blueprint for authentication
     from .views.auth import auth
     app.register_blueprint(auth, url_prefix='/auth')
 
-    # Armstrong Number Checker Blueprint
+    # Blueprint for Armstrong Number Checker
     from .views.app_routes import arm_num_checker
     app.register_blueprint(arm_num_checker, url_prefix='/arm_num_checker')
 
-    # User Blueprint
+    # Blueprint for user management
     from .views.user import user_bluprt
     app.register_blueprint(user_bluprt, url_prefix='/user')
 
-    # OTHER SETUPS
+    # Other setups
     from .config.database import db
     db.init_app(app)
 
-    # MODELS
+    # Models
     from . import models
 
     create_database(app)
 
-    # LOGIN MANAGER
+    # Login Manager
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login_page'
     login_manager.init_app(app)
@@ -57,7 +54,7 @@ def create_app():
         flash("You have to be logged in to access this page.")
         return redirect(url_for('auth.login_page', next=request.endpoint))
 
-    # ERROR 404
+    # Error handling
     @app.errorhandler(404)
     def page_not_found(error):
         print("404 ERROR:", str(error))

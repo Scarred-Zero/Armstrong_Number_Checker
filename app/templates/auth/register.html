@@ -39,50 +39,42 @@
                                             <!-- form -->
                                             <form action="{{ url_for('auth.register_page') }}" method="POST">
                                                 {% include "auth/partials/_alert.html" %}
+                                                {{ form.csrf_token }}
                                                 <div class="mb-1">
-                                                    <label for="name" class="form-label">Full Name:</label>
-                                                    <input class="form-control" type="text" id="name" name="name"
-                                                        placeholder="Ex. Michael Armstrong" required="">
+                                                    {{ form.name.label }} {{ form.name() }}
                                                 </div>
                                                 <div class="mb-1">
-                                                    <label for="email" class="form-label">Email address:</label>
-                                                    <input class="form-control" type="email" name="email" id="email" required=""
-                                                        placeholder="Ex. michaelarmstrong@example.com">
+                                                    {{ form.email.label }} {{ form.email() }}
                                                 </div>
                                                 <div class="mb-1">
-                                                    <label for="username" class="form-label">Username:</label>
-                                                    <input class="form-control" type="text" name="username" id="username" required=""
-                                                        placeholder="Ex. Armstrong153">
+                                                    {{ form.username.label }} {{ form.username() }}
                                                 </div>
                                                 <div class="mb-1">
-                                                    <label for="contact" class="form-label">Contact:</label>
-                                                    <input class="form-control" type="tel" name="contact" id="contact" required=""
-                                                        placeholder="Enter your contact number">
+                                                    {{ form.contact_number.label }} {{ form.contact_number() }}
                                                 </div>
                                                 <div class="mb-1">
-                                                    <label for="password" class="form-label">Password:</label>
+                                                    {{ form.password.label }}
                                                     <span style="display: flex;">
-                                                        <input class="form-control password" name="password" type="password" required="" id="password"
-                                                            placeholder="Enter your password">
+                                                        {{ form.password() }}
                                                         <span id="password_show_hide" onclick="togglePass()">
                                                             <i class="fa fa-eye"></i>
                                                         </span>
                                                     </span>
                                                 </div>
                                                 <div class="mb-1">
-                                                    <label for="confirm_password" class="form-label">Confirm password:</label>
+                                                    {{ form.confirm_password.label }}
                                                     <span style="display: flex;">
-                                                        <input class="form-control password" name="confirm_password" type="password" required="" id="confirm_password"
-                                                            placeholder="Please confirm your password">   
+                                                        {{ form.confirm_password() }} 
                                                         <span id="password_show_hide" onclick="toggleConfirmPass()">
                                                             <i class="fa fa-eye" id="confirmPassIcon"></i>
                                                     </span>
                                                 </div>
                                                 <div class="my-2 d-grid text-center">
-                                                    <button class="btn btn-soft-primary" style="border-radius: 8px;" type="submit">
-                                                        <i class="fa fa-pen-to-square me-1"></i> 
+                                                    {{ form.submit() }} 
+                                                    <!-- <button class="btn btn-soft-primary" style="border-radius: 8px;" type="submit">
+                                                        
                                                         <span class="fw-bold">Register</span>
-                                                    </button>
+                                                    </button> -->
                                                 </div>
                                             </form>
                                             <!-- end form-->

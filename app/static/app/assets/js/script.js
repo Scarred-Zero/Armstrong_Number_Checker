@@ -84,21 +84,41 @@
     }, 4000);
   }
 
-    var a = document.getElementById("liveAlertPlaceholder"),
-    t = document.getElementById("liveAlertBtn");
-  t &&
-    t.addEventListener("click", function () {
-      var e, t, n;
-      (e = "Nice, you triggered this alert message!"),
-        (t = "success"),
-        ((n = document.createElement("div")).innerHTML = [
-          '<div class="alert alert-'.concat(t, ' alert-dismissible" role="alert">'),
-          "   <div>".concat(e, "</div>"),
-          '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
-          "</div>",
-        ].join("")),
-        a.append(n);
-    }),
+  var a = document.getElementById("liveAlertPlaceholder"),
+  t = document.getElementById("liveAlertBtn");
+  t && t.addEventListener("click", function () {
+    var e, t, n;
+    (e = "Nice, you triggered this alert message!"),
+      (t = "success"),
+      ((n = document.createElement("div")).innerHTML = [
+        '<div class="alert alert-'.concat(t, ' alert-dismissible" role="alert">'),
+        "   <div>".concat(e, "</div>"),
+        '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+        "</div>",
+      ].join("")),
+      a.append(n);
+  }),
+
+  // onclick function to close alert dialog
+  a.addEventListener("click", function (e) {
+    if (e.target.classList.contains("btn-close")) {
+      e.target.parentElement.remove();
+    }
+  });
+
+  // onclick function to close alert dialog on clicking outside
+  a.addEventListener("click", function (e) {
+    if (e.target === a) {
+      a.remove();
+    }
+  });
+
+  // onclick function to close alert dialog on clicking close button
+  a.addEventListener("click", function (e) {
+    if (e.target.classList.contains("btn-close")) {
+      a.remove();
+    }
+  });
 
   form.submit(function (e) {
     e.preventDefault();

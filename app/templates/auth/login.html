@@ -37,33 +37,24 @@
                                             <p class="text-muted mb-3">Enter your email address and password to access
                                                 account.
                                             </p>
-
                                             <!-- form -->
                                             <form action="{{ url_for('auth.login_page') }}" method="post">
                                                 {% include "auth/partials/_alert.html" %}
+                                                {{ form.csrf_token }}
                                                 <div class="mb-3">
-                                                    <label for="email" class="form-label">Email address:</label>
-                                                    <input class="form-control" type="email" name="email" id="email" required=""
-                                                        placeholder="Enter your email">
+                                                    {{ form.email.label }}  {{ form.email() }}
                                                 </div>
                                                 <div class="mb-3">
-                                                    <!-- <a href="auth-forgotpw.html" class="text-muted float-end">
-                                                        <small>Forgot your password?</small>
-                                                    </a> -->
-                                                    <label for="password" class="form-label">Password:</label>
+                                                    {{ form.password.label }}
                                                     <span style="display: flex;">
-                                                        <input class="form-control password" name="password" type="password" required="" id="password"
-                                                            placeholder="Enter your password">
+                                                         {{ form.password() }}
                                                         <span id="password_show_hide" onclick="togglePass()">
                                                             <i class="fa fa-eye"></i>
                                                         </span>
                                                     </span>
                                                 </div>
                                                 <div class="mb-0 text-start">
-                                                    <button class="btn btn-soft-primary w-100" style="border-radius: 8px;" type="submit">
-                                                        <i class="fa fa-sign-in me-1"></i> 
-                                                        <span class="fw-bold">Login</span>
-                                                    </button>
+                                                    {{ form.submit() }}
                                                 </div>
                                             </form>
                                             <!-- end form-->
