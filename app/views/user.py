@@ -8,7 +8,7 @@ user_bluprt = Blueprint('user', __name__)
 
 
 # HANDLE USER VIEW
-@user_bluprt.get('/user_profile')  # /<int:user_id>
+@user_bluprt.get('/user_profile/<int:user_id>')  #
 # @login_required
 def user_page(user_id):
     user = User.query.get_or_404(user_id)
