@@ -1,4 +1,7 @@
 :root{
+  --at-success: #22bb33;
+  --at-success-text-emphasis: #28a745;
+  --at-success-rgb: 34, 187, 51;
   --at-danger: #d03f3f;
   --at-danger-text-emphasis: #bb3939;
   --at-danger-rgb: 208, 63, 63;
@@ -168,13 +171,13 @@ BUTTONS STYLE
   background: #DC6B19;
   color: #fff;
   border: none;
-  box-shadow: 0px 3px 8px 0px rgba(0, 0, 0, 0.9);
+  box-shadow: 0px 3px 8px 0px rgba(0, 0, 0, 0.7);
 }
 #find_armstrong_num:hover{
   transform: scale(1.1);
 }
 .btn-clear{
-  box-shadow: 0px 3px 8px 0px rgba(0, 0, 0, 0.9);
+  box-shadow: 0px 3px 8px 0px rgba(0, 0, 0, 0.7);
 }
 .btn-clear:hover{
   transform: scale(1.1);
@@ -185,7 +188,7 @@ BUTTONS STYLE
 .btn-small i {
   margin-right: 5px;
 }
-.alert-container {
+/* .alert-container {
   position: fixed;
   width: 100%;  
   top: 80px;
@@ -195,7 +198,7 @@ BUTTONS STYLE
 }
 .alert-container > .alert {
   width: 100% !important;
-}
+} */
 .alert {
   --at-alert-bg: transparent;
   --at-alert-padding-x: 1.25rem;
@@ -277,8 +280,11 @@ BUTTONS STYLE
 .fade:not(.show) {
   opacity: 0;
 }
+.d-none {
+  display: none !important;
+}
 .btn-close {
-  --at-btn-close-color: var(--at-secondary-color);
+  --at-btn-close-color:  #8391a2;;
   --at-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='var%28--at-secondary-color%29'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e");
   --at-btn-close-opacity: 0.5;
   --at-btn-close-hover-opacity: 0.8;
@@ -367,7 +373,7 @@ BANNER AREA
   padding: 50px 0px;
 }
 .page-header {
-  padding: 200px 0px;
+  padding: 150px 0px;
   background: #F4FDFF;
   position: relative;
   background: url("../images/contact_banner.jpg") no-repeat;
@@ -375,6 +381,7 @@ BANNER AREA
   background-position: 0px 30%;
   text-align: center;
   font-family: 'Poetsen One', sans-serif;
+  border-bottom: 1px solid #DC5F00;
   border-radius: 8px;
 }
 .page-header:before {
@@ -387,6 +394,7 @@ BANNER AREA
   background: rgba(0, 0, 0, 0.8);
   opacity: .9;
   border-radius: 8px;
+  border-bottom: 1px solid #DC5F00;
 }
 .page-header .page-header-content h1 {
   color: #fff;
@@ -463,6 +471,15 @@ HEADER TOPBAR
   font-weight: 400;
 }
 
+.btn-success {
+  --at-btn-bg: var(--at-success);
+  --at-btn-border-color: var(--at-success);
+  --at-btn-hover-bg: var(--at-success-text-emphasis);
+  --at-btn-hover-border-color: var(--at-success-text-emphasis);
+  --at-btn-focus-shadow-rgb: var(--at-success-rgb);
+  --at-btn-active-bg: var(--at-success-text-emphasis);
+  --at-btn-active-border-color: var(--at-success-text-emphasis);
+}
 .btn-danger {
   --at-btn-bg: var(--at-danger);
   --at-btn-border-color: var(--at-danger);
@@ -699,7 +716,7 @@ HEADER TOPBAR
 }
 
 .contact__form .form-control:hover {
-  border: solid 3px #D36B00;
+  border: solid 2.3px #D36B00;
 }
 
 .contact__form .form-group {
@@ -729,7 +746,7 @@ HEADER TOPBAR
 ARMSTRONG FORM SECTION
 ========================*/
 #armstrong-form-section{
-  margin-top: -220px;
+  margin-top: -143px;
   position: relative;
 }
 

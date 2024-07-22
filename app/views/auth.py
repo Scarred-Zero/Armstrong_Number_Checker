@@ -29,7 +29,7 @@ def login_page():
                 return redirect(url_for('auth.register_page'))
 
             # CHECK PASSWORD
-            if not check_password_hash(user.password, password):
+            if not user and not check_password_hash(user.password, password):
                 flash('Incorrect password. Please try again.', category='error')
                 return redirect(url_for('auth.login_page'))
 
@@ -37,6 +37,7 @@ def login_page():
             login_user(user, remember=True)
             flash('Logged in successfully!', category='success')
             return redirect(url_for('arm_num_checker.home_page', user=current_user))
+
         else:
             flash('Invalid credentials. Please check your inputs.', category='error')
             return redirect(url_for('auth.login_page'))
@@ -53,7 +54,6 @@ def register_page():
     if request.method == 'POST':
         # CHECK IF ALL REQUIRED FIELDS ARE PRESENT
         missing_fields = [field for field in required_fields if not getattr(form_data, field, None)]
-        print("MISSING FIELDS:", missing_fields)
 
         if missing_fields:
             flash(f'Missing fields: {", ".join(missing_fields)}', category='error')
@@ -124,4 +124,4 @@ def register_page():
 def logout():
     logout_user()
     flash('Logged out successfully!', category='success')
-    return redirect(url_for('auth.login'))
+    return redirect(url_for('auth.login_page'))

@@ -67,11 +67,6 @@
                                         Contact Us / Submit Feedback
                                     </a>
                                 </li>
-                                <!-- <li class="nav-item ">
-                                    <a href="{{ url_for('arm_num_checker.results_page') }}" class="nav-link">
-                                        Results
-                                    </a>
-                                </li> -->
                                 <a href="{{ url_for('auth.logout') }}" class="btn btn-small" id="logout">
                                     <i class="fa fa-sign-out-alt mr-2"></i>
                                     Logout
@@ -107,29 +102,30 @@
         </section>
         <!-- Page Header End -->        
 
-        <div class="section-padding">
-            <div class="row align-content-center justify-content-center">
-                <div class="col-lg-8">
-                    <h3>USER DETAILS</h3>
-                    <br>
-                    <h4>{{ user.name }}</h4>
-                    <p><strong>Email: </strong>{{ user.email }}</p>
-                    <p><strong>Username: </strong>{{ user.username }}</p>
-                </div>     
-            </div>   
-        </div>
-        <div class="row align-content-center justify-content-between">
-            <button>
-                <a href="{{ url_for('user.update_profile', user_id=user.user_id) }}" class="btn btn-soft-primary">
-                    Edit
-                </a>
-            </button>
-    
-            <button>
-                <a href="{{ url_for('user.delete_profile', user_id=user.user_id) }}" class="btn btn-danger btn-clear">
-                    Delete
-                </a>
-            </button>
+        <div class="section-padding" id="armstrong-form-section">
+            <div class="container">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-lg-4">
+                        <h1>USER DETAILS</h1>
+                        <br>
+                        <h2>NAME: {{ user.name }}</h2>
+                        <p><strong>EMAIIL: </strong>{{ user.email }}</p>
+                        <p><strong>USERNAME: </strong>{{ user.username }}</p>
+                    </div>     
+                </div> 
+                <div class="row align-items-center justify-content-around">
+                    <a href="{{ url_for('user.update_profile_page', user_id=user.user_id) }}">
+                        <button class="btn btn-success btn-clear">
+                            Edit<i class="fa fa-pen-to-square ml-2"></i>
+                        </button>
+                    </a>
+                    <a href="{{ url_for('user.delete_profile', user_id=user.user_id) }}">
+                        <button class="btn btn-danger btn-clear">
+                            Delete<i class="fa fa-trash ml-2"></i>
+                        </button>
+                    </a>
+                </div> 
+            </div> 
         </div>
 
         <!-- Footer start -->
@@ -181,22 +177,15 @@
         </section>
         <!-- Footer end -->
         <div class="fixed-btm-top">
-            <a href="{{ url_for('arm_num_checker.home_page') }}#top-header" class="js-scroll-trigger scroll-to-top"><i class="fa fa-angle-up"></i></a>
+            <a href="{{ url_for('user.user_page', user_id=user.user_id) }}#top-header" class="js-scroll-trigger scroll-to-top"><i class="fa fa-angle-up"></i></a>
         </div>
 
-        <!--Essential Scripts=====================================-->
-        
+        <!--Essential Scripts -->
         <!-- Main jQuery -->
         <script src="/static/app/assets/js/jquery.js"></script>
         <!-- Bootstrap 4.5 -->
         <script src="/static/app/assets/js/bootstrap.js"></script>
-        <!-- Counterup -->
-        <script src="/static/app/assets/js/waypoint.js"></script>
-        <script src="/static/app/assets/js/jquery.counterup.min.js"></script>
-        <script src="/static/app/assets/js/jquery.isotope.js"></script>
-        <script src="/static/app/assets/js/imagesloaded.js"></script>
-        <!--  Owl Carousel-->
-        <script src="/static/app/assets/js/owl.carousel.min.js"></script>
+        <!-- Script -->
         <script src="/static/app/assets/js/script.js"></script>
 
     </body>

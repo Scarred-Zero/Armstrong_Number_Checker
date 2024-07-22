@@ -39,7 +39,7 @@
                                             </p>
                                             <!-- form -->
                                             <form action="{{ url_for('auth.login_page') }}" method="post">
-                                                {% include "auth/partials/_alert.html" %}
+                                                {% include "partials/_alert.html" %}
                                                 {{ form.csrf_token }}
                                                 <div class="mb-3">
                                                     {{ form.email.label }}  {{ form.email() }}

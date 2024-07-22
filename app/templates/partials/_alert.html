@@ -4,7 +4,7 @@
   .alert-container {
     position: fixed;
     width: 100%;  
-    top: 80px;
+    top: 150px;
     right: 50px;
     z-index: 9999;
     max-width: 400px;
@@ -18,17 +18,17 @@
     {% for category, message in alerts %} 
       {% if category == 'error' %}
           <div class="alert alert-dismissible text-bg-warning border-0 fade show alert-warning" role="alert">
-            <button type="button" id="closeAlertButton" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close">&times;</button>
+            <button type="button" id="closeAlertButton" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
             {{ message }}
           </div>
         {% elif category == 'success' %}
           <div class="alert alert-dismissible text-bg-success border-0 fade show alert-success" role="alert">
-            <button type="button" id="closeAlertButton" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close">&times;</button>
+            <button type="button" id="closeAlertButton" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
             {{ message }}
           </div> 
         {% elif category == 'danger' %}
           <div class="alert alert-dismissible text-bg-danger border-0 fade show alert-danger" role="alert">
-            <button type="button" id="closeAlertButton" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close">&times;</button>
+            <button type="button" id="closeAlertButton" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
             {{ message }}
           </div>
       {% endif %}

@@ -14,6 +14,15 @@
   });
 
   /* ---------------------------------------------
+         Alerts --------------------------------
+  --------------------------------------------- */
+  
+  const alertBtn = document.getElementById('closeAlertButton')
+  alertBtn.onclick = () => {
+    alertBtn.parentElement.classList.add("d-none");
+  }
+  
+  /* ---------------------------------------------
          Clear input
   --------------------------------------------- */
 
@@ -31,31 +40,6 @@
     var field = document.getElementById('check_particular_num');
     field.value = field.defaultValue;
   };
-
-  /* ---------------------------------------------
-         course filtering
-    --------------------------------------------- */
-
-  var $course = $('.course-gallery');
-
-  if ($.fn.imagesLoaded && $course.length > 0) {
-    imagesLoaded($course, function () {
-      $course.isotope({
-        itemSelector: '.course-item',
-        filter: '*'
-      });
-      $(window).trigger("resize");
-    });
-  }
-
-  $('.course-filter').on('click', 'a', function (e) {
-    e.preventDefault();
-    $(this).parent().addClass('active').siblings().removeClass('active');
-    var filterValue = $(this).attr('data-filter');
-    $course.isotope({
-      filter: filterValue
-    });
-  });
 
   /* ---------------------------------------------
          Contact Form
@@ -83,42 +67,6 @@
       message.fadeOut();
     }, 4000);
   }
-
-  var a = document.getElementById("liveAlertPlaceholder"),
-  t = document.getElementById("liveAlertBtn");
-  t && t.addEventListener("click", function () {
-    var e, t, n;
-    (e = "Nice, you triggered this alert message!"),
-      (t = "success"),
-      ((n = document.createElement("div")).innerHTML = [
-        '<div class="alert alert-'.concat(t, ' alert-dismissible" role="alert">'),
-        "   <div>".concat(e, "</div>"),
-        '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
-        "</div>",
-      ].join("")),
-      a.append(n);
-  }),
-
-  // onclick function to close alert dialog
-  a.addEventListener("click", function (e) {
-    if (e.target.classList.contains("btn-close")) {
-      e.target.parentElement.remove();
-    }
-  });
-
-  // onclick function to close alert dialog on clicking outside
-  a.addEventListener("click", function (e) {
-    if (e.target === a) {
-      a.remove();
-    }
-  });
-
-  // onclick function to close alert dialog on clicking close button
-  a.addEventListener("click", function (e) {
-    if (e.target.classList.contains("btn-close")) {
-      a.remove();
-    }
-  });
 
   form.submit(function (e) {
     e.preventDefault();

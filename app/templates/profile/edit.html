@@ -38,10 +38,6 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="col-lg-6 col-md-6">
-                           
-                            </div>
-                        </div>
                     </div>
                 </div>    
             </div>
@@ -71,11 +67,6 @@
                                         Contact Us / Submit Feedback
                                     </a>
                                 </li>
-                                <!-- <li class="nav-item ">
-                                    <a href="{{ url_for('arm_num_checker.results_page') }}" class="nav-link">
-                                        Results
-                                    </a>
-                                </li> -->
                                 <a href="{{ url_for('auth.logout') }}" class="btn btn-small" id="logout">
                                     <i class="fa fa-sign-out-alt mr-2"></i>
                                     Logout
@@ -101,6 +92,10 @@
                         </li>
                         <li class="list-inline-item">/</li>
                         <li class="list-inline-item">
+                        <a href="{{ url_for('user.user_page', user_id=user.user_id) }}" id="breadcrumps">User Profile</a>
+                        </li>
+                        <li class="list-inline-item">/</li>
+                        <li class="list-inline-item">
                             Edit User Profile
                         </li>
                     </ul>
@@ -118,43 +113,39 @@
                         <h3>USER DETAILS</h3>
                         <br>
                          <!-- form -->
-                         <form class="contact__form form-row " method="POST" action="{{ url_for('arm_num_checker.update_profile') }}">
-                            {% include "auth/partials/_alert.html" %}
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="alert alert-success contact__msg" style="display: none" role="alert">
-                                        Your profile was edited successfully!
-                                    </div>
-                                </div>
-                            </div>
-
+                         <form class="contact__form form-row " method="PATCH" action="{{ url_for('user.update_profile_page', user_id=user.user_id) }}">
+                            {% include "partials/_alert.html" %}
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label for="name" class="form-label">Name:</label>
-                                        <input type="text" id="name" name="name" class="form-control" value="{{ edited_user.name }}">
+                                       {{ form.name.label }} {{ form.name() }}
+                                        <!-- <label for="name" class="form-label">Name:</label> -->
+                                        <!-- <input type="text" id="name" name="name" class="form-control" value="{{ user.name }}"> -->
                                     </div>
                                 </div>
                                 
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                    <label for="email" class="form-label">Email:</label>
-                                        <input type="text" name="email" id="email" class="form-control" value="{{ edited_user.email }}">
-                                    </div>
+                                        {{ form.email.label }} {{ form.email() }}
+                                        <!-- <label for="email" class="form-label">Email:</label> -->
+                                        <!-- <input type="text" name="email" id="email" class="form-control" value="{{ user.email }}"> -->
+                                    </div> 
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label for="usernmae" class="form-label">Username:</label>
-                                        <input type="text" name="username" id="username" class="form-control" value="{{ edited_user.username }}">
+                                        {{ form.username.label }} {{ form.username() }}
+                                        <!-- <label for="usernmae" class="form-label">Username:</label> -->
+                                        <!-- <input type="text" name="username" id="username" class="form-control" value="{{ user.username }}"> -->
                                     </div>
                                 </div>
                             </div>
 
                             <div class="col-lg-12">
                                 <div class="mt-4 text-right">
-                                    <button class="btn" id="find_armstrong_num" type="submit">
+                                    {{ form.submit() }}
+                                      <!-- <button class="btn" id="find_armstrong_num" type="submit">
                                         Save Profile<i class="fa fa-user ml-2"></i>
-                                    </button>
+                                      </button> -->
                                 </div>
                             </div>
                         </form> 
@@ -213,22 +204,15 @@
         </section>
         <!-- Footer end -->
         <div class="fixed-btm-top">
-            <a href="{{ url_for('arm_num_checker.home_page') }}#top-header" class="js-scroll-trigger scroll-to-top"><i class="fa fa-angle-up"></i></a>
+            <a href="{{ url_for('user.update_profile_page', user_id=user.user_id) }}#top-header" class="js-scroll-trigger scroll-to-top"><i class="fa fa-angle-up"></i></a>
         </div>
 
-        <!--Essential Scripts=====================================-->
-        
+        <!--Essential Scripts -->
         <!-- Main jQuery -->
         <script src="/static/app/assets/js/jquery.js"></script>
         <!-- Bootstrap 4.5 -->
         <script src="/static/app/assets/js/bootstrap.js"></script>
-        <!-- Counterup -->
-        <script src="/static/app/assets/js/waypoint.js"></script>
-        <script src="/static/app/assets/js/jquery.counterup.min.js"></script>
-        <script src="/static/app/assets/js/jquery.isotope.js"></script>
-        <script src="/static/app/assets/js/imagesloaded.js"></script>
-        <!--  Owl Carousel-->
-        <script src="/static/app/assets/js/owl.carousel.min.js"></script>
+        <!-- Script -->
         <script src="/static/app/assets/js/script.js"></script>
 
     </body>

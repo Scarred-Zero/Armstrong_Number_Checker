@@ -1,10 +1,11 @@
-from flask import Flask, render_template, session, flash, redirect, url_for, request
+from flask import Flask, render_template, flash, redirect, url_for, request
 from .utils.helpers import response
 from flask_login import LoginManager
 from os import path
 from .config.database import db
 from .models.User import User
 from .config.variable import SECRET_KEY, MYSQL_HOST, MYSQL_PORT, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DB, DATABASE_URI
+from flask_wtf import CSRFProtect
 
 
 def create_app():
@@ -30,6 +31,10 @@ def create_app():
     # Blueprint for user management
     from .views.user import user_bluprt
     app.register_blueprint(user_bluprt, url_prefix='/user')
+
+    # CSRF Protection
+    csrf = CSRFProtect()
+    csrf.init_app(app)
 
     # Other setups
     from .config.database import db
