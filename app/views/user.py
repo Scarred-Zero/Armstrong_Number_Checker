@@ -20,7 +20,7 @@ def user_page(usr_id):
 
 
 # USER_PROFILE PAGE ROUTE
-@user_bluprt.route('/update_profile/<usr_id>', methods=['GET', 'PATCH'])
+@user_bluprt.route('/update_profile/<usr_id>', methods=['GET', 'POST'])
 def update_profile_page(usr_id):
     user = User.query.filter_by(usr_id=usr_id).first()
     # INITIALISE THE FORM WITH EXISTING DATA
@@ -41,6 +41,7 @@ def update_profile_page(usr_id):
         if form_data.email.data and form_data.email.data != previous_data['email']:
             user.is_email_verified = False
 
+        db.session.add(user)
         db.session.commit()
 
         flash('Profile updated successfully!', category='success')
