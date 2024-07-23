@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, TelField
+from wtforms import StringField, PasswordField, SubmitField, TelField, TextAreaField
 from wtforms.validators import InputRequired, Email, EqualTo, Length
 
 
@@ -49,3 +49,15 @@ class ProfileForm(FlaskForm):
     password = PasswordField('Password:', validators=[InputRequired(), Length(min=8, max=20)], render_kw={'class': 'form-control'})
 
     submit = SubmitField('Save Profile', render_kw={'class': 'btn', 'id': 'find_armstrong_num'})
+
+
+class FeedbackForm(FlaskForm):
+    name = StringField('Name', validators=[InputRequired()], render_kw={'class': 'form-control'})
+
+    email = StringField('Email', validators=[InputRequired(), Email()], render_kw={'class': 'form-control'})
+
+    subject = StringField('Subject', validators=[InputRequired()], render_kw={'class': 'form-control'})
+
+    message = TextAreaField('Message', validators=[InputRequired()], render_kw={'class': 'form-control'})
+
+    submit = SubmitField('Submit Feedback', render_kw={'class': 'btn', 'id': 'find_armstrong_num'})

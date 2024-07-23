@@ -72,7 +72,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item ">
-                                    <a href="{{ url_for('arm_num_checker.contact_page') }}" class="nav-link">
+                                    <a href="{{ url_for('arm_num_checker.contact_page', usr_id=current_user.usr_id) }}" class="nav-link">
                                         Contact Us / Submit Feedback
                                     </a>
                                 </li>
@@ -123,9 +123,9 @@
                                     {% endfor %}
                                 </ul>
                                 <p>Total Armstrong Numbers: {{ armstrong_numbers|length }}</p>
-
+                               
                                 {% if result %}
-                                    <p>{{ result }}</p>
+                                    <p>Result: {{ result }}</p>
                                 {% endif %}
                             </div>
                         </div>
