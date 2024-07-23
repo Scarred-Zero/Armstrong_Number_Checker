@@ -28,10 +28,10 @@ class RegistrationForm(FlaskForm):
 
 
 class LoginForm(FlaskForm):
-    email = StringField('Email:', validators=[InputRequired(), Length(min=4, max=80)],
+    email = StringField('Email:', validators=[InputRequired(), Length(min=6, max=80)],
                         render_kw={'placeholder': 'Email address', 'class': 'form-control'})
 
-    password = PasswordField('Password:', validators=[InputRequired(), Length(min=4, max=20)],
+    password = PasswordField('Password:', validators=[InputRequired(), Length(min=8, max=20)],
                              render_kw={'placeholder': 'Password', 'class': 'form-control'})
 
     submit = SubmitField('Login', render_kw={'class': 'btn btn-soft-primary w-100'})
@@ -43,5 +43,9 @@ class ProfileForm(FlaskForm):
     email = StringField('Email:', validators=[InputRequired(), Length(min=6, max=80), Email()], render_kw={'class': 'form-control'})
 
     username = StringField('Username:', validators=[InputRequired(), Length(min=4, max=20)], render_kw={'class': 'form-control'})
+
+    contact_number = TelField('Contact:', validators=[InputRequired(), Length(max=20)], render_kw={'class': 'form-control'})
+
+    password = PasswordField('Password:', validators=[InputRequired(), Length(min=8, max=20)], render_kw={'class': 'form-control'})
 
     submit = SubmitField('Save Profile', render_kw={'class': 'btn', 'id': 'find_armstrong_num'})

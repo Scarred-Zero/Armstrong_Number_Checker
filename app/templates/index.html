@@ -41,7 +41,7 @@
                         <div class="col-lg-6 col-md-6">
                             <div class="header-right float-right">
                                 <div class="header-btn">
-                                    <a href="{{ url_for('user.user_page', user_id=user.user_id) }}" class="btn btn-main btn-small">
+                                    <a href="{{ url_for('user.user_page', usr_id=current_user.usr_id) }}" class="btn btn-main btn-small">
                                         <i class="fa fa-user ml-1"></i> View Profile
                                     </a>
                                 </div>
@@ -116,7 +116,7 @@
                 <div class="row align-content-center justify-content-center">
                     <div class="col-lg-8">
                         <!-- form -->
-                        <form class="contact__form form-row " method="POST" action="{{ url_for('arm_num_checker.home_page') }}">
+                        <form class="contact__form form-row" method="POST" action="{{ url_for('arm_num_checker.home_page') }}">
                             {% include "partials/_alert.html" %}                            
                             <div class="row">
                                 <div class="col-lg-6">
@@ -141,30 +141,47 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label for="check_particular_num">Check Number:</label>
-                                        <input type="number" id="check_particular_num" name="check_particular_num" class="form-control" placeholder="Enter Value" required="">
-                                        <div class="mt-2 text-right">
-                                            <button class="btn btn-danger btn-clear" id="reset_particular_num">
-                                                Clear Input<i class="fa fa-trash ml-2"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 justify-content-between pt-5">
-                                    <div class="mt-2 text-right">
-                                        <button class="btn" id="find_armstrong_num" type="submit">Find <i class="fa fa-drafting-compass ml-2"></i>rmstrong Numbers</button>
-                                    </div>
 
-                                    <div class="mt-2 text-right">
+                                <div class="col-lg-4 mt-3">
+                                    <div class=" mt-2 text-right">
                                         <button class="btn btn-danger btn-clear" type="reset">
-                                            Clear All Inputs<i class="fa fa-trash ml-2"></i></button>
+                                            Clear All Inputs<i class="fa fa-trash ml-2"></i>
+                                        </button>
                                     </div>
                                 </div>
+                                <div class="col-lg-8 mt-3">
+                                    <div class="mt-2 text-right">
+                                        <button class="btn" id="find_armstrong_num" type="submit">
+                                            Find<i class="fa fa-drafting-compass ml-2"></i>rmstrong Numbers
+                                        </button>
+                                    </div>
+                                </div>
+                                 
                             </div>    
                         </form> 
                         <!-- /form -->
+
+                        <!-- form -->
+                        <form class="contact__form form-row" action="{{ url_for('arm_num_checker.check_number') }}" method="POST">
+                            <div class="col-lg-6 mt-5">
+                                <div class="form-group">
+                                    <label for="check_particular_num">Check Number:</label>
+                                    <input type="number" id="check_particular_num" name="check_particular_num" class="form-control" placeholder="Enter Value" required="">
+                                    <div class="mt-2 text-right">
+                                        <button class="btn btn-danger btn-clear" id="reset_check_particular_num">
+                                            Clear Input<i class="fa fa-trash ml-2"></i>
+                                        </button>
+                                    </div>
+                                    <div class="mt-2 text-right">
+                                        <button class="btn" id="find_armstrong_num" type="submit">
+                                            Check Number
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>   
+                        </form>
+                        <!-- form end -->
                     </div>
                 </div>
             </div>

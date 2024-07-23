@@ -41,7 +41,7 @@
                         <div class="col-lg-6 col-md-6">
                             <div class="header-right float-right">
                                 <div class="header-btn">
-                                    <a href="{{ url_for('user.user_page', user_id=user.user_id) }}" class="btn btn-main btn-small">
+                                    <a href="{{ url_for('user.user_page', usr_id=current_user.usr_id) }}" class="btn btn-main btn-small">
                                         <i class="fa fa-user ml-1"></i> View Profile
                                     </a>
                                 </div>
@@ -76,11 +76,6 @@
                                         Contact Us / Submit Feedback
                                     </a>
                                 </li>
-                                <!-- <li class="nav-item ">
-                                    <a href="{{ url_for('arm_num_checker.results_page') }}" class="nav-link">
-                                        Results
-                                    </a>
-                                </li> -->
                                 <a href="{{ url_for('auth.logout') }}" class="btn btn-small" id="logout">
                                     <i class="fa fa-sign-out-alt mr-2"></i>
                                     Logout
@@ -121,16 +116,16 @@
                     <div class="row align-items-center justify-content-center">
                         <div class="col-lg-6">
                             <div class="section-heading center-heading">
-                                <h1>Armstrong Number(s) Found</h1>
+                                <h1>Armstrong Numbers</h1>
                                 <ul>
-                                    {% for num in armstrong_numbers %}
-                                        <li>{{ num }}</li>
+                                    {% for number in armstrong_numbers %}
+                                        <li>{{ number }}</li>
                                     {% endfor %}
                                 </ul>
                                 <p>Total Armstrong Numbers: {{ armstrong_numbers|length }}</p>
 
-                                {% if check_result %}
-                                    <p>{{ check_result }}</p>
+                                {% if result %}
+                                    <p>{{ result }}</p>
                                 {% endif %}
                             </div>
                         </div>

@@ -105,7 +105,7 @@
         <div class="section-padding" id="armstrong-form-section">
             <div class="container">
                 <div class="row align-items-center justify-content-center">
-                    <div class="col-lg-4">
+                    <div class="col-lg-6">
                         <h1>USER DETAILS</h1>
                         <br>
                         <h2>NAME: {{ user.name }}</h2>
@@ -114,12 +114,12 @@
                     </div>     
                 </div> 
                 <div class="row align-items-center justify-content-around">
-                    <a href="{{ url_for('user.update_profile_page', user_id=user.user_id) }}">
+                    <a href="{{ url_for('user.update_profile_page', usr_id=current_user.usr_id) }}">
                         <button class="btn btn-success btn-clear">
                             Edit<i class="fa fa-pen-to-square ml-2"></i>
                         </button>
                     </a>
-                    <a href="{{ url_for('user.delete_profile', user_id=user.user_id) }}">
+                    <a href="{{ url_for('user.delete_profile', usr_id=current_user.usr_id) }}">
                         <button class="btn btn-danger btn-clear">
                             Delete<i class="fa fa-trash ml-2"></i>
                         </button>
@@ -177,7 +177,7 @@
         </section>
         <!-- Footer end -->
         <div class="fixed-btm-top">
-            <a href="{{ url_for('user.user_page', user_id=user.user_id) }}#top-header" class="js-scroll-trigger scroll-to-top"><i class="fa fa-angle-up"></i></a>
+            <a href="{{ url_for('user.user_page', usr_id=current_user.usr_id) }}#top-header" class="js-scroll-trigger scroll-to-top"><i class="fa fa-angle-up"></i></a>
         </div>
 
         <!--Essential Scripts -->

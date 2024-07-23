@@ -92,7 +92,7 @@
                         </li>
                         <li class="list-inline-item">/</li>
                         <li class="list-inline-item">
-                        <a href="{{ url_for('user.user_page', user_id=user.user_id) }}" id="breadcrumps">User Profile</a>
+                        <a href="{{ url_for('user.user_page', usr_id=current_user.usr_id) }}" id="breadcrumps">User Profile</a>
                         </li>
                         <li class="list-inline-item">/</li>
                         <li class="list-inline-item">
@@ -113,29 +113,33 @@
                         <h3>USER DETAILS</h3>
                         <br>
                          <!-- form -->
-                         <form class="contact__form form-row " method="PATCH" action="{{ url_for('user.update_profile_page', user_id=user.user_id) }}">
+                         <form class="contact__form form-row " method="PATCH" action="{{ url_for('user.update_profile_page', usr_id=current_user.usr_id) }}">
                             {% include "partials/_alert.html" %}
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                        {{ form.name.label }} {{ form.name() }}
-                                        <!-- <label for="name" class="form-label">Name:</label> -->
-                                        <!-- <input type="text" id="name" name="name" class="form-control" value="{{ user.name }}"> -->
                                     </div>
                                 </div>
                                 
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         {{ form.email.label }} {{ form.email() }}
-                                        <!-- <label for="email" class="form-label">Email:</label> -->
-                                        <!-- <input type="text" name="email" id="email" class="form-control" value="{{ user.email }}"> -->
                                     </div> 
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         {{ form.username.label }} {{ form.username() }}
-                                        <!-- <label for="usernmae" class="form-label">Username:</label> -->
-                                        <!-- <input type="text" name="username" id="username" class="form-control" value="{{ user.username }}"> -->
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        {{ form.contact_number.label }} {{ form.contact_number() }}
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        {{ form.password.label }} {{ form.password() }}
                                     </div>
                                 </div>
                             </div>
@@ -143,9 +147,6 @@
                             <div class="col-lg-12">
                                 <div class="mt-4 text-right">
                                     {{ form.submit() }}
-                                      <!-- <button class="btn" id="find_armstrong_num" type="submit">
-                                        Save Profile<i class="fa fa-user ml-2"></i>
-                                      </button> -->
                                 </div>
                             </div>
                         </form> 
@@ -204,7 +205,7 @@
         </section>
         <!-- Footer end -->
         <div class="fixed-btm-top">
-            <a href="{{ url_for('user.update_profile_page', user_id=user.user_id) }}#top-header" class="js-scroll-trigger scroll-to-top"><i class="fa fa-angle-up"></i></a>
+            <a href="{{ url_for('user.update_profile_page', usr_id=current_user.usr_id) }}#top-header" class="js-scroll-trigger scroll-to-top"><i class="fa fa-angle-up"></i></a>
         </div>
 
         <!--Essential Scripts -->

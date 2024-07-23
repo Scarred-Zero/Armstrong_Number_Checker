@@ -26,17 +26,17 @@
          Clear input
   --------------------------------------------- */
 
-  document.getElementById('reset_min_num').onclick= function() {
+  document.getElementById('reset_min_num').onclick = function() {
     var field = document.getElementById('min_num');
     field.value = field.defaultValue;
   };
 
-  document.getElementById('reset_max_num').onclick= function() {
+  document.getElementById('reset_max_num').onclick = function() {
     var field = document.getElementById('max_num');
     field.value = field.defaultValue;
   };
 
-  document.getElementById('reset_particular_num').onclick= function() {
+  document.getElementById('reset_check_particular_num').onclick = function() {
     var field = document.getElementById('check_particular_num');
     field.value = field.defaultValue;
   };

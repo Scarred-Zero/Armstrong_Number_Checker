@@ -36,13 +36,13 @@ def login_page():
             # LOGIN THE USER
             login_user(user, remember=True)
             flash('Logged in successfully!', category='success')
-            return redirect(url_for('arm_num_checker.home_page', user=current_user))
+            return redirect(url_for('arm_num_checker.home_page', current_user=current_user))
 
         else:
             flash('Invalid credentials. Please check your inputs.', category='error')
             return redirect(url_for('auth.login_page'))
 
-    return render_template('auth/login.html', user=current_user, form=form_data)
+    return render_template('auth/login.html', current_user=current_user, form=form_data)
 
 
 # ROUTE FOR HANDLING USER REGISTRATION
@@ -112,10 +112,10 @@ def register_page():
 
             # LOGIN THE NEWLY REGISTERED USER
             # login_user(new_user, remember=True)
-            flash(f'Hey {username}, your account was created successfully!', category='success')
-            return redirect(url_for('auth.login_page', user=current_user))
+            flash(f'Hey {name}, your account was created successfully!', category='success')
+            return redirect(url_for('auth.login_page', current_user=current_user))
 
-    return render_template('auth/register.html', user=current_user, form=form_data)
+    return render_template('auth/register.html', current_user=current_user, form=form_data)
 
 
 # HANDLE USER LOGOUT

@@ -8,8 +8,8 @@ from werkzeug.security import generate_password_hash
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
-    id = db.Column(db.Integer(), primary_key=True)
-    user_id = db.Column(db.Integer, nullable=False)
+    id = db.Column(db.Integer, primary_key=True)
+    usr_id = db.Column(db.String, nullable=False)
     name = db.Column(db.String(80), nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)
     username = db.Column(db.String(50), nullable=False)
@@ -21,7 +21,7 @@ class User(db.Model, UserMixin):
 
     def __init__(self, name, email, username, contact_number, password, role='user',
                  date_created=func.now()):
-        self.user_id = str(uuid.uuid4())
+        self.usr_id = str(uuid.uuid4())
         self.name = name
         self.email = email
         self.username = username
@@ -34,14 +34,13 @@ class User(db.Model, UserMixin):
         users = self.query.all()
         return users
 
-    def find_by_id(self, user_id):
-        user = self.query.filter_by(user_id=user_id).first()  # Get the first result
+    def find_by_id(self, usr_id):
+        user = self.query.filter_by(usr_id=usr_id).first()  # Get the first result
         return user
 
     def data(self):
         return {
-            'id': self.id,
-            'user_id': self.user_id,
+            'usr_id': self.usr_id,
             'name': self.name,
             'email': self.email,
             'username': self.username,

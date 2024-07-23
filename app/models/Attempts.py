@@ -7,8 +7,7 @@ from .User import User
 class LoginAttempt(db.Model, UserMixin):
     __tablename__ = 'login_attempts'
 
-    id = db.Column(db.Integer(), primary_key=True)
-    user_id = db.Column(db.Integer, nullable=False)
+    user_id = db.Column(db.Integer, primary_key=True)
     attempt_time = db.Column(db.DateTime(timezone=True), default=func.now())
     success = db.Column(db.Boolean(), default=False, nullable=False)
 

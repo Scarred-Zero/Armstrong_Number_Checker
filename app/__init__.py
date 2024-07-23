@@ -5,7 +5,6 @@ from os import path
 from .config.database import db
 from .models.User import User
 from .config.variable import SECRET_KEY, MYSQL_HOST, MYSQL_PORT, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DB, DATABASE_URI
-from flask_wtf import CSRFProtect
 
 
 def create_app():
@@ -32,10 +31,6 @@ def create_app():
     from .views.user import user_bluprt
     app.register_blueprint(user_bluprt, url_prefix='/user')
 
-    # CSRF Protection
-    csrf = CSRFProtect()
-    csrf.init_app(app)
-
     # Other setups
     from .config.database import db
     db.init_app(app)
@@ -51,8 +46,8 @@ def create_app():
     login_manager.init_app(app)
 
     @login_manager.user_loader
-    def load_user(user_id):
-        return User.query.get(user_id)
+    def load_user(usr_id):
+        return User.query.get(usr_id)
 
     @login_manager.unauthorized_handler
     def handle_needs_login():
