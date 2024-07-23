@@ -113,8 +113,10 @@
                         <h3>USER DETAILS</h3>
                         <br>
                          <!-- form -->
-                         <form class="contact__form form-row " method="PATCH" action="{{ url_for('user.update_profile_page', usr_id=current_user.usr_id) }}">
-                            {% include "partials/_alert.html" %}
+                         {% include "partials/_alert.html" %}
+                         <form class="contact__form form-row" method="POST" action="{{ url_for('user.update_profile_page_edit', usr_id=current_user.usr_id) }}">
+
+                            {{ form.csrf_token }}
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
