@@ -1,5 +1,9 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from flask_login import login_required, current_user
+from ..models.Feedback import Feedback
+from ..models.User import User
+from ..config.database import db
+from .forms import FeedbackForm
 
 # CREATE A BLUEPRINT FOR THE ARMSTRONG NUMBER CHECKER
 arm_num_checker = Blueprint('arm_num_checker', __name__)
@@ -34,7 +38,7 @@ def home_page():
             max_num = int(form_data['max_num'])
 
             # CALCULATE ARMSTRONG NUMBERS WITHIN THE SPECIFIED RANGE
-            armstrong_numbers = [num for num in range(min_num, max_num + 1) if is_armstrong(num)]
+            armstrong_numbers = [number for number in range(min_num, max_num + 1) if is_armstrong(number)]
             if not armstrong_numbers:
                 flash('No Armstrong numbers found within the given range.', category='error')
                 return redirect(
@@ -64,6 +68,24 @@ def results_page():
 
 
 # ROUTES FOR CONTACT PAGE
-@arm_num_checker.get('/contact')
-def contact_page():
-    return render_template('contact.html', current_user=current_user, title='Contact Us | Armstrong Number Checker')
+@arm_num_checker.route('/contact/<usr_id>', methods=['GET', 'POST'])
+def contact_page(usr_id):
+    user = User.query.filter_by(usr_id=usr_id).first()
+    form_data = FeedbackForm(obj=user)
+
+    if request.method == 'POST':
+        if form_data.validate_on_submit():
+            name = form_data.name.data
+            email = form_data.email.data
+            subject = form_data.subject.data
+            message = form_data.message.data
+
+            # SAVE THE FEEDBACK TO THE DATABASE
+            feedback = Feedback(usr_id=current_user.usr_id, name=name, email=email, subject=subject, message=message)
+            db.session.add(feedback)
+            db.session.commit()
+
+            flash('Thank you for your feedback!', category='success')
+            return redirect(url_for('arm_num_checker.contact_page'))
+
+    return render_template('contact.html', form=form_data, current_user=current_user, title='Contact Us | Armstrong Number Checker')

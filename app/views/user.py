@@ -41,6 +41,7 @@ def update_profile_page(usr_id):
         if form_data.email.data and form_data.email.data != previous_data['email']:
             user.is_email_verified = False
 
+        db.session.add(user)
         db.session.commit()
 
         flash('Profile updated successfully!', category='success')
