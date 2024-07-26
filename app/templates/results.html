@@ -111,23 +111,28 @@
             </section>
             <!-- Page Header End -->
              
-            <section class="contact-info section-padding" id="armstrong-form-section">
+            <section class="section-padding">
                 <div class="container">
                     <div class="row align-items-center justify-content-center">
                         <div class="col-lg-6">
-                            <div class="section-heading center-heading">
-                                <h1>Armstrong Numbers</h1>
-                                <ul>
-                                    {% for number in armstrong_numbers %}
-                                        <li>{{ number }}</li>
-                                    {% endfor %}
-                                </ul>
-                                <p>Total Armstrong Numbers: {{ armstrong_numbers|length }}</p>
-                               
+                            <div class="center-heading">
+                                {% if armstrong_numbers %}
+                                    <h1>Armstrong Numbers found:</h1>
+                                    <ul>
+                                        {% for number in armstrong_numbers %}
+                                            <li>{{ number }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                    <br>
+                                    <p>Total Armstrong Numbers: {{ armstrong_numbers|length }}</p>
+                                {% else %}
+                                    <p>No Armstrong numbers found within the given range.</p>
+                                {% endif %}
+
                                 {% if result %}
                                     <p>Result: {{ result }}</p>
                                 {% endif %}
-                            </div>
+                            </div>                          
                         </div>
                     </div>
                 </div>
@@ -184,7 +189,7 @@
         </section>
         <!-- Footer end -->
         <div class="fixed-btm-top">
-            <a href="{{ url_for('arm_num_checker.results_page') }}#top-header" class="js-scroll-trigger scroll-to-top"><i class="fa fa-angle-up"></i></a>
+            <a href="{{ url_for('arm_num_checker.results_page', usr_id=current_user.usr_id ) }}#top-header" class="js-scroll-trigger scroll-to-top"><i class="fa fa-angle-up"></i></a>
         </div>
 
         <!--Essential Scripts -->

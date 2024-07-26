@@ -108,13 +108,17 @@
 
         <section class="contact-info section-padding" id="armstrong-form-section">
             <div class="container">
-                <div class="row justify-content-center">
+                <div class="row align-items-center justify-content-center">
                     <div class="col-lg-8">
-                        <h3>USER DETAILS</h3>
-                        <br>
+                        <div class="section-heading center-heading">
+                            <span class="subheading">USER DETAILS </span>
+                            <h3>For form validation</h3>
+                            <p>In the Password field, if you <strong><em>do not wish </em></strong> to change your current password. Still input your current password(the one inputed during registration), for form validation.</p>
+                        </div>
                          <!-- form -->
-                         <form class="contact__form form-row " method="PATCH" action="{{ url_for('user.update_profile_page', usr_id=current_user.usr_id) }}">
-                            {% include "partials/_alert.html" %}
+                        {% include "partials/_alert.html" %}
+                        <form class="contact__form form-row" method="POST" action="{{ url_for('user.update_profile_page_edit', usr_id=current_user.usr_id) }}">
+                            {{ form.csrf_token }}
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
@@ -139,7 +143,13 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        {{ form.password.label }} {{ form.password() }}
+                                        {{ form.password.label }} 
+                                        <span style="display: flex;">
+                                            {{ form.password() }}
+                                           <span class="mt-3 ml-2" id="password_show_hide" onclick="togglePass()" style="color: #DC6B19;">
+                                               <i class="fa fa-eye"></i>
+                                           </span>
+                                       </span>
                                     </div>
                                 </div>
                             </div>

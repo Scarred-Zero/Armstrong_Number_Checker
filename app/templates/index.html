@@ -111,13 +111,13 @@
                 <div class="row align-content-center justify-content-center">
                     <div class="col-lg-8">
                         <!-- form -->
+                        {% include "partials/_alert.html" %}                            
                         <form class="contact__form form-row" method="POST" action="{{ url_for('arm_num_checker.home_page') }}">
-                            {% include "partials/_alert.html" %}                            
+                            {{ form.csrf_token }}
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label for="min_num">Minimum Number:</label>
-                                        <input type="number" id="min_num" name="min_num" value="initial" class="form-control" placeholder="Enter Min Value" required="">
+                                        {{ form.min_num.label }} {{ form.min_num(size=10) }}
                                         <div class="mt-2 text-right">
                                             <button class="btn btn-danger btn-clear" id="reset_min_num">
                                                 Clear Input<i class="fa fa-trash ml-2"></i>
@@ -127,8 +127,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label for="max_num">Maximum Number:</label>
-                                        <input type="number" id="max_num" name="max_num" value="initial" class="form-control" placeholder="Enter Max Value" required="">
+                                        {{ form.max_num.label }} {{ form.max_num(size=10) }}
                                         <div class="mt-2 text-right">
                                             <button class="btn btn-danger btn-clear" id="reset_max_num">
                                                 Clear Input<i class="fa fa-trash ml-2"></i>
@@ -145,9 +144,7 @@
                                 </div>
                                 <div class="col-lg-8 mt-3">
                                     <div class="mt-2 text-right">
-                                        <button class="btn" id="find_armstrong_num" type="submit">
-                                            Find<i class="fa fa-drafting-compass ml-2"></i>rmstrong Numbers
-                                        </button>
+                                        {{ form.submit() }}
                                     </div>
                                 </div>
                             </div>    
@@ -155,20 +152,18 @@
                         <!-- /form -->
 
                         <!-- form -->
-                        <form class="contact__form form-row" action="{{ url_for('arm_num_checker.check_number') }}" method="POST">
+                        <form class="contact__form form-row" action="{{ url_for('arm_num_checker.home_page') }}" method="POST">
+                            {{ form2.csrf_token }}
                             <div class="col-lg-6 mt-5">
                                 <div class="form-group">
-                                    <label for="check_particular_num">Check Number:</label>
-                                    <input type="number" id="check_particular_num" name="check_particular_num" class="form-control" placeholder="Enter Value" required="">
+                                    {{ form2.check_particular_num.label }} {{ form2.check_particular_num(size=10) }}
                                     <div class="mt-2 text-right">
                                         <button class="btn btn-danger btn-clear" id="reset_check_particular_num" type="reset">
                                             Clear Input<i class="fa fa-trash ml-2"></i>
                                         </button>
                                     </div>
                                     <div class="mt-2 text-right">
-                                        <button class="btn" id="find_armstrong_num" type="submit">
-                                            Check Number
-                                        </button>
+                                        {{ form2.submit() }}
                                     </div>
                                 </div>
                             </div>   
@@ -267,5 +262,3 @@
         <script src="/static/app/assets/js/script.js"></script>
     </body>
 </html>  
-
-    

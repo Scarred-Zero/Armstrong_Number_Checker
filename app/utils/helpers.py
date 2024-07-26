@@ -33,11 +33,6 @@ def validate_password(password, length_error='Password must be at least 8 charac
     return None  # Password meets all requirements
 
 
-def response(msg, data=None, success=True):
-    """Creates a new response dict, The dict will contain message, data and success properties"""
-    return {"message": msg, "data": data, "success": success}
-
-
 def generate_id(length=8):
     """Generates random id"""
     return [randint(1, 9).__str__() for _ in range(length)]

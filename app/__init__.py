@@ -1,9 +1,8 @@
 from flask import Flask, render_template, flash, redirect, url_for, request
-from .utils.helpers import response
 from flask_login import LoginManager
 from os import path
 from .config.database import db
-from .models.User import User
+from .models.Models import User
 from .config.variable import SECRET_KEY, MYSQL_HOST, MYSQL_PORT, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DB, DATABASE_URI
 
 
@@ -63,7 +62,7 @@ def create_app():
     @app.errorhandler(Exception)
     def server_error(error):
         print("SERVER ERROR:", str(error))
-        return response(str(error), None, False)
+        return render_template("errors/server-error.html")
 
     return app
 

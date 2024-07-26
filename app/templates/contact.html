@@ -154,16 +154,9 @@
 
                         <div class="col-lg-8">
                             <!-- form -->
+                            {% include "partials/_alert.html" %}
                             <form class="contact__form form-row " method="POST" action="{{ url_for('arm_num_checker.contact_page', usr_id=current_user.usr_id) }}" id="contactForm">
-                                {% include "partials/_alert.html" %}
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="alert alert-success contact__msg" style="display: none" role="alert">
-                                            Your message was sent successfully!
-                                        </div>
-                                    </div>
-                                </div>
-
+                                {{ form.csrf_token }}
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="form-group">
@@ -214,7 +207,6 @@
                         </div>
                     </div>
                     
-                  
                     <div class="col-lg-3 col-sm-6 col-md-6">
                         <div class="footer-widget footer-contact mb-5 mb-lg-0">
                             <h5 class="widget-title">Contact Us</h5>

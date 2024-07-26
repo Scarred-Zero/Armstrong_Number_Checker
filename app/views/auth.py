@@ -1,6 +1,6 @@
 from flask import Blueprint, request, session, render_template, redirect, flash, url_for
 from ..config.database import db
-from ..models.User import User
+from ..models.Models import User
 from .forms import LoginForm, RegistrationForm
 from ..utils.helpers import validate_password
 from email_validator import validate_email, EmailNotValidError
@@ -23,7 +23,6 @@ def login_page():
 
             # VALIDATE EMAIL
             user = User.query.filter_by(email=email).first()
-            print('USER:', user)
             if not user:
                 flash('User does not exist. Please register first.', category='error')
                 return redirect(url_for('auth.register_page'))
@@ -59,23 +58,21 @@ def register_page():
             flash(f'Missing fields: {", ".join(missing_fields)}', category='error')
             return redirect(url_for('auth.register_page'))
 
-        print("VALIDATE:", form_data.validate_on_submit())
         if form_data.validate_on_submit():
             name = form_data.name.data
             email = form_data.email.data
+            username = form_data.username.data
+            contact_number = form_data.contact_number.data
+            password = form_data.password.data
+            confirm_password = form_data.confirm_password.data
 
             try:
-                # VALIDATE EMAI WITH EMAIL-VALIDATOR
+                # VALIDATE EMAIL WITH EMAIL-VALIDATOR
                 valid_email = validate_email(email)
                 email = valid_email.normalized
             except EmailNotValidError as e:
                 flash(f'Invalid email format: {e}', category='error')
                 return redirect(url_for('auth.register_page'))
-
-            username = form_data.username.data
-            contact_number = form_data.contact_number.data
-            password = form_data.password.data
-            confirm_password = form_data.confirm_password.data
 
             # VALIDATE PASSWORD REQUIREMENTS
             error_message = validate_password(password)
@@ -92,8 +89,7 @@ def register_page():
             hashed_password = generate_password_hash(password)
 
             # CHECK IF EMAIL EXISTS
-            existing_user = User.query.filter_by(name=name, email=email, username=username,
-                                                 contact_number=contact_number).first()
+            existing_user = User.query.filter_by(email=email).first()
             if existing_user:
                 flash('User already exists. Please register to have your own account.', category='error')
                 return redirect(url_for('auth.register_page'))
@@ -106,14 +102,17 @@ def register_page():
                 role='user',  # Sets the role to user
                 password=hashed_password)  # Defines the hashing method
 
-            # ADD NEW USER TO THE DATABASE
-            db.session.add(new_user)
-            db.session.commit()
-
-            # LOGIN THE NEWLY REGISTERED USER
-            # login_user(new_user, remember=True)
-            flash(f'Hey {name}, your account was created successfully!', category='success')
-            return redirect(url_for('auth.login_page', current_user=current_user))
+            try:
+                # ADD NEW USER TO THE DATABASE
+                db.session.add(new_user)
+                db.session.commit()
+                flash(f'Hey {name}, your account was created successfully!', category='success')
+                flash('Remember to save your password either on the browser or somewhere else', category='success')
+                return redirect(url_for('auth.login_page', current_user=current_user))
+            except Exception as e:
+                db.session.rollback()
+                flash(f'Error creating account: {e}', category='error')
+                return redirect(url_for('auth.register_page'))
 
     return render_template('auth/register.html', current_user=current_user, form=form_data)
 

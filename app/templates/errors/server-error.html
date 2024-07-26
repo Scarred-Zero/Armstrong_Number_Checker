@@ -3,7 +3,7 @@
 
     <head>
         <meta charset="utf-8" />
-        <title>Error 404 | Armstrong Number Checker</title>
+        <title>Server Error | Armstrong Number Checker</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="A fully responsive  Website" name="description" />
 
@@ -24,10 +24,7 @@
                     <div class="col-xxl-8 col-lg-10">
                         <div class="card overflow-hidden">
                             <div class="row g-0">
-                                <div class="col-lg-6 d-none d-lg-block p-2">
-                                    <img src="/static/auth/assets/images/error_404.avif" alt="" class="img-fluid rounded h-100">
-                                </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-112">
                                     <div class="d-flex flex-column h-100">
                                         <div class="auth-brand p-4">
                                             <a href="{{ url_for('arm_num_checker.home_page') }}" class="logo-dark">
@@ -36,15 +33,31 @@
                                         </div>
                                         <div class="p-4 my-auto">
                                             <div class="text-center">
-                                                <h1 class="mb-3" style="color: #d03f3f;">Error code: 404</h1>
-                                                <h4 class="fs-20" style="color: #d03f3f;">Page not found</h4>
-                                                <p class="text-light mb-3"> It's looking like you may have taken a wrong turn. Don't worry... It happens to the best of us.</p>
+                                                <h1 style="color: #d03f3f;">Oh, Shoot!!!</h1>
+                                                <h3 class="mb-3" style="color: #d03f3f;">Error code: 500</h3>
+                                                <h2 class="text-light mb-3"> Well, this is unexpected...</h2>
+                                                <p>An error has occurred and we're working to fix the problem! We'll be up and running shortly.</p>
                                             </div>
-                                            <a href="{{ url_for('arm_num_checker.home_page') }}">
-                                                <button class="btn btn-soft-primary w-100" style="border-radius: 8px;">
-                                                        Return to Home <i class="fa fa-home me-1"></i>
-                                                </button>
-                                            </a>
+
+                                            <div class="text-left">
+                                                <p>In the meantime, here's what you can do:</p>
+                                                <ol>
+                                                    <li>
+                                                        <a href="{{ url_for('arm_num_checker.home_page') }}"><button class="btn btn-soft-primary w-50" style="border-radius: 8px;">
+                                                            Return to Home <i class="fa fa-home me-1"></i></button>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        Check your internet connection. <i class="fa fa-wifi me-1" style="color: #0077b5;"></i>
+                                                    </li>
+                                                    <li>
+                                                        Try refreshing the page or clearing your browser cache. <i class="fa fa-refresh me-1" style="color: #0077b5;"></i>
+                                                    </li>
+                                                    <li>
+                                                        Let us know about the problem using our Contact Us form.<a href="{{ url_for('arm_num_checker.contact_page', usr_id=current_user.usr_id) }}"> <button class="btn btn-soft-primary w-50" style="border-radius: 8px;">Contact Us</button></a>
+                                                    </li>
+                                                </ol>
+                                            </div>
                                         </div>
                                     </div>
                                 </div> 
