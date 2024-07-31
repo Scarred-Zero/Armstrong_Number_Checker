@@ -3,7 +3,7 @@ from flask_login import LoginManager
 from os import path
 from .config.database import db
 from .models.Models import User
-from .config.variable import SECRET_KEY, MYSQL_HOST, MYSQL_PORT, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DB, DATABASE_URI
+from .config.variables import SECRET_KEY, MYSQL_HOST, MYSQL_PORT, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DB, DATABASE_URI
 
 
 def create_app():

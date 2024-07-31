@@ -112,7 +112,7 @@
                     <div class="col-lg-8">
                         <!-- form -->
                         {% include "partials/_alert.html" %}                            
-                        <form class="contact__form form-row" method="POST" action="{{ url_for('arm_num_checker.home_page') }}">
+                        <form id="armstrong-form" method="POST" action="{{ url_for('arm_num_checker.home_page') }}">
                             {{ form.csrf_token }}
                             <div class="row">
                                 <div class="col-lg-6">
@@ -152,7 +152,7 @@
                         <!-- /form -->
 
                         <!-- form -->
-                        <form class="contact__form form-row" action="{{ url_for('arm_num_checker.home_page') }}" method="POST">
+                        <form class="contact__form form-row" action="{{ url_for('arm_num_checker.home_page') }}" method="POST" id="check-number-form">
                             {{ form2.csrf_token }}
                             <div class="col-lg-6 mt-5">
                                 <div class="form-group">
@@ -260,5 +260,62 @@
         <script src="/static/app/assets/js/bootstrap.js"></script>
         <!-- Script -->
         <script src="/static/app/assets/js/script.js"></script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const armstrongForm = document.getElementById('armstrong-form');
+                const checkNumberForm = document.getElementById('check-number-form');
+            
+                if (armstrongForm) {
+                    armstrongForm.addEventListener('submit', async (event) => {
+                        console.log("Peekaboo")
+                        event.preventDefault(); // Prevent default form submission
+            
+                        const formData = new FormData(armstrongForm);
+                        const response = await fetch(armstrongForm.action, {
+                            method: 'POST',
+                            body: formData,
+                            headers: {
+                                'X-Requested-With': 'XMLHttpRequest'
+                            }
+                        });
+            
+                        const result = await response.json(); // Assuming server returns JSON
+            
+                        if (response.ok) {
+                            window.location.href = result.redirect; // Redirect URL from server
+                        } else {
+                            // Handle error or show message
+                            alert('Error: ' + result.error);
+                        }
+                    });
+                }
+            
+                if (checkNumberForm) {
+                    checkNumberForm.addEventListener('submit', async (event) => {
+                        event.preventDefault(); // Prevent default form submission
+            
+                        const formData = new FormData(checkNumberForm);
+                        const response = await fetch(checkNumberForm.action, {
+                            method: 'POST',
+                            body: formData,
+                            headers: {
+                                'X-Requested-With': 'XMLHttpRequest'
+                            }
+                        });
+            
+                        const result = await response.json(); // Assuming server returns JSON
+            
+                        if (response.ok) {
+                            window.location.href = result.redirect; // Redirect URL from server
+                        } else {
+                            // Handle error or show message
+                            alert('Error: ' + result.error);
+                        }
+                    });
+                }
+            });
+            </script>
+            
     </body>
 </html>  

@@ -63,12 +63,12 @@ def update_profile_page_edit(usr_id):
         else:
             user.email = previous_data['email']
 
-        # RESET IS EMAIL VERIFIED
+        # RESET IS_EMAIL_VERIFIED
         if form_data.email.data and form_data.email.data != previous_data['email']:
             user.is_email_verified = False
 
-        if form_data.password.data:
             # VALIDATE PASSWORD REQUIREMENTS
+        if form_data.password.data:
             error_message = validate_password(form_data.password.data)
             if error_message:
                 flash(error_message, category='error')

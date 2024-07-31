@@ -1,4 +1,4 @@
-from flask import Blueprint, request, session, render_template, redirect, flash, url_for
+from flask import Blueprint, request, render_template, redirect, flash, url_for
 from ..config.database import db
 from ..models.Models import User
 from .forms import LoginForm, RegistrationForm
@@ -24,23 +24,19 @@ def login_page():
             # VALIDATE EMAIL
             user = User.query.filter_by(email=email).first()
             if not user:
-                flash('User does not exist. Please register first.', category='error')
-                return redirect(url_for('auth.register_page'))
+                flash('Incorrect email. Please check your email.', category='error')
 
-            # CHECK PASSWORD
-            if not user and not check_password_hash(user.password, password):
-                flash('Incorrect password. Please try again.', category='error')
-                return redirect(url_for('auth.login_page'))
+            # VALIDATE PASSWORD
+            if user and not check_password_hash(user.password, password):
+                flash('Your email was correct, but your password was incorrect. Please, try again.', category='error')
 
-            # LOGIN THE USER
-            login_user(user, remember=True)
-            flash('Logged in successfully!', category='success')
-            return redirect(url_for('arm_num_checker.home_page', current_user=current_user))
-
-        else:
-            flash('Invalid credentials. Please check your inputs.', category='error')
-            return redirect(url_for('auth.login_page'))
-
+            if user and check_password_hash(user.password, password):
+                # LOGIN THE USER
+                name = user.name
+                login_user(user, remember=True)
+                flash(f'Logged in {name}, successfully!', category='success')
+                return redirect(url_for('arm_num_checker.home_page', current_user=current_user))
+        
     return render_template('auth/login.html', current_user=current_user, form=form_data)
 
 
@@ -107,7 +103,7 @@ def register_page():
                 db.session.add(new_user)
                 db.session.commit()
                 flash(f'Hey {name}, your account was created successfully!', category='success')
-                flash('Remember to save your password either on the browser or somewhere else', category='success')
+                flash('Remember to save your password either on the browser or somewhere else.', category='success')
                 return redirect(url_for('auth.login_page', current_user=current_user))
             except Exception as e:
                 db.session.rollback()
@@ -121,6 +117,7 @@ def register_page():
 @auth.get('/logout')
 @login_required
 def logout():
+    name = current_user.name  # Get the user's name before logging out
     logout_user()
-    flash('Logged out successfully!', category='success')
+    flash(f'Logged out {name}, successfully!', category='success')
     return redirect(url_for('auth.login_page'))

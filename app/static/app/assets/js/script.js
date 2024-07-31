@@ -80,6 +80,10 @@
 /* ---------------------------------------------
         Alerts --------------------------------
 --------------------------------------------- */
+// const alertBtn = document.querySelector('.closeAlertButton')
+// alertBtn.onclick = () => {
+//   alertBtn.parentElement.classList.add("d-none");
+// }
 const alertBtns = document.querySelectorAll('.closeAlertButton')
 console.log("ALERT BTNS:", alertBtns)
 
