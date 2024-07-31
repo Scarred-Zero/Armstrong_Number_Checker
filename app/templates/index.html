@@ -112,7 +112,7 @@
                     <div class="col-lg-8">
                         <!-- form -->
                         {% include "partials/_alert.html" %}                            
-                        <form id="armstrong-form" method="POST" action="{{ url_for('arm_num_checker.home_page') }}">
+                        <form id="armstrong-form" class="contact__form form-row" method="POST" action="{{ url_for('arm_num_checker.home_page') }}">
                             {{ form.csrf_token }}
                             <div class="row">
                                 <div class="col-lg-6">
