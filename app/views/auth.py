@@ -27,10 +27,9 @@ def login_page():
                 flash('Incorrect email. Please check your email.', category='error')
 
             # VALIDATE PASSWORD
-            if user and not check_password_hash(user.password, password):
+            if not check_password_hash(user.password, password):
                 flash('Your email was correct, but your password was incorrect. Please, try again.', category='error')
-
-            if user and check_password_hash(user.password, password):
+            else:
                 # LOGIN THE USER
                 name = user.name
                 login_user(user, remember=True)

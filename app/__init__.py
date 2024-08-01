@@ -31,7 +31,6 @@ def create_app():
     app.register_blueprint(user_bluprt, url_prefix='/user')
 
     # Other setups
-    from .config.database import db
     db.init_app(app)
 
     # Models

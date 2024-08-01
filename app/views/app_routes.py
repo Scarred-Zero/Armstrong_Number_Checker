@@ -30,21 +30,20 @@ def is_armstrong(number):
 # @arm_num_checker.route('/home', methods=['GET', 'POST'])
 @login_required
 def home_page():
-    try:
-        form_data = ArmstrongForm()
-        form_data_2 = CheckNumberForm()
+    form_data = ArmstrongForm()
+    form_data_2 = CheckNumberForm()
 
-        if request.method == "POST":
-            if form_data.validate_on_submit():
-                if int(form_data.min_num.data) > int(form_data.max_num.data):
-                    return (
-                        jsonify(
-                            {
-                                "error": "Minimum number must be less than or equal to maximum number."
-                            }
-                        ),
-                        400,
-                    )
+    if request.method == "POST":
+        if form_data.validate_on_submit():
+            if int(form_data.min_num.data) > int(form_data.max_num.data):
+                return (
+                    jsonify(
+                        {
+                            "error": "Minimum number must be less than or equal to maximum number."
+                        }
+                    ),
+                    400,
+                )
             if int(form_data.min_num.data) < 1 or int(form_data.max_num.data) < 1:
                 return (
                     jsonify(
@@ -74,29 +73,36 @@ def home_page():
             session["armstrong_numbers"] = armstrong_numbers
 
             return jsonify({"redirect": url_for("arm_num_checker.results_page")})
-            # # FOR CHECKING A SPECIFIC ARMSTRONG NUMBER
-            # if form_data_2.validate_on_submit():
-            #     # VALIDATE INPUTS: POSITIVE INTEGER
-            #     if int(form_data_2.check_particular_num.data) < 1:
-            #         flash('Please enter a positive integer for the number to check.', category='error')
-            #         return redirect(url_for('arm_num_checker.home_page'))
-            #     else:
-            #         # HANDLE FORM SUBMISSION
-            #         check_particular_num = int(form_data_2.check_particular_num.data)
-            #         result = "It is an Armstrong Number" if is_armstrong(
-            #             check_particular_num) else "Not an Armstrong Number"
-            #         # STORE THE RESULTS IN THE SESSION
-            #         session['check_num_result'] = result
-            #         return redirect(url_for('arm_num_checker.results_page', result=result))
+    # FOR CHECKING A SPECIFIC ARMSTRONG NUMBER
+    if form_data_2.validate_on_submit():
+        check_particular_num = int(form_data_2.check_particular_num.data)
+        if check_particular_num < 1:
+            return (
+                jsonify(
+                    {
+                        "error": "Please enter a positive integer for the number to check."
+                    }
+                ),
+                400,
+            )
 
-        return render_template(
-            "index.html",
-            form=form_data,
-            form2=form_data_2,
-            title="Home | Armstrong Number Checker",
+        # HANDLE FORM SUBMISSION
+        result = (
+            f"{check_particular_num} is an Armstrong Number"
+            if is_armstrong(check_particular_num)
+            else f"{check_particular_num} is not an Armstrong Number"
         )
-    except Exception as e:
-        print(f"Error {e}")
+
+        # STORE THE RESULTS IN THE SESSION
+        session["check_num_result"] = result
+        return jsonify({"redirect": url_for("arm_num_checker.results_page")})
+
+    return render_template(
+        "index.html",
+        form=form_data,
+        form2=form_data_2,
+        title="Home | Armstrong Number Checker",
+    )
 
 
 # ROUTES FOR DISPLAYING RESULTS

@@ -2,7 +2,6 @@ import uuid
 from ..config.database import db
 from flask_login import UserMixin
 from sqlalchemy.sql import func
-from werkzeug.security import generate_password_hash
 
 
 class User(db.Model, UserMixin):
@@ -26,7 +25,7 @@ class User(db.Model, UserMixin):
         self.email = email
         self.username = username
         self.contact_number = contact_number
-        self.password = generate_password_hash(f'{password}')
+        self.password = password
         self.role = role
         self.date_created = date_created
 

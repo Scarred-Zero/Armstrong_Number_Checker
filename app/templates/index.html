@@ -268,7 +268,6 @@
             
                 if (armstrongForm) {
                     armstrongForm.addEventListener('submit', async (event) => {
-                        console.log("Peekaboo")
                         event.preventDefault(); // Prevent default form submission
             
                         const formData = new FormData(armstrongForm);
@@ -294,7 +293,7 @@
                 if (checkNumberForm) {
                     checkNumberForm.addEventListener('submit', async (event) => {
                         event.preventDefault(); // Prevent default form submission
-            
+                        
                         const formData = new FormData(checkNumberForm);
                         const response = await fetch(checkNumberForm.action, {
                             method: 'POST',
@@ -305,6 +304,7 @@
                         });
             
                         const result = await response.json(); // Assuming server returns JSON
+                        console.log(result)
             
                         if (response.ok) {
                             window.location.href = result.redirect; // Redirect URL from server
